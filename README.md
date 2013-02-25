@@ -1,4 +1,4 @@
-Processingjs IDE - @VERSION@
+Processingjs IDE - alpha
 =========================
 a little and minimalist online code editor for Processing visualization language.
 
@@ -6,7 +6,7 @@ About
 --------
 * Developer          Steven Calderon
 * License:           MIT
-* Web Site:          https://dl.dropbox.com/u/1115409/public_dev/github/processingjs-IDE/code.html
+* Web Site:          http://dl.dropbox.com/u/1115409/public_dev/github/processingjs-IDE/code.html
 
 
 Built with.
