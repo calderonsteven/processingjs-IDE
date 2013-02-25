@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Processingjs IDE</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <!--<link href="bootstrap/assets/css/bootstrap-responsive.css" rel="stylesheet">-->
+
+    <style type="text/css">
+      #sketch{
+        image-rendering: -webkit-optimize-contrast !important;
+        height: 200;
+        width: 200;
+        border: 1px solid gray;
+      }
+      #editor-container{
+        height: 400px;
+      }
+      #code {
+        /*border: 1px solid blue;*/
+        position: relative;
+        height: 100%;
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="#">Processing IDE</a>
+          <div class="nav-collapse collapse navbar-responsive-collapse">
+            <ul class="nav">
+              <li class="active">
+                <a href="#" onclick="runSketch();" >
+                  <i class="icon-play-circle"></i>
+                  Run
+                </a>
+              </li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Examples <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="#">Action</a></li>
+                  <li><a href="#">Another action</a></li>
+                  <li><a href="#">Something else here</a></li>
+                  <li class="divider"></li>
+                  <li class="nav-header">Nav header</li>
+                  <li><a href="#">Separated link</a></li>
+                  <li><a href="#">One more separated link</a></li>
+                </ul>
+              </li>
+            </ul>
+            <form class="navbar-search pull-left" action="">
+              <input type="text" class="search-query span2" placeholder="Search Documentation.">
+            </form>
+            <ul class="nav pull-right">
+              <li><a href="#">Full Screen</a></li>
+              <li class="divider-vertical"></li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="#">Action</a></li>
+                  <li><a href="#">Another action</a></li>
+                  <li><a href="#">Something else here</a></li>
+                  <li class="divider"></li>
+                  <li><a href="#">Separated link</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div><!-- /.nav-collapse -->
+        </div>
+      </div><!-- /navbar-inner -->
+    </div>
+
+    <!-- Final del navbar -->
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div id="editor-container" class="span4">
+          <div id="code" onkeyup="runSketch();" >//ejemplo de codigo
+stroke(255, 102, 0);
+curve(5, 26, 5, 26, 73, 24, 73, 61);
+stroke(0); 
+curve(5, 26, 73, 24, 73, 61, 15, 65); 
+stroke(255, 102, 0);
+curve(73, 24, 73, 61, 15, 65, 15, 65);</div>
+        <textarea rows="2" class="span12" id="output" readonly="readonly">Done.</textarea>
+        </div>
+        <div class="span8">
+          <div id="sketch-container">
+            <canvas id="sketch"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="http://code.jquery.com/jquery.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+
+    <script src="processing.js"></script>
+    <script src="tools/jsbeautify.js"></script>
+    <script src="tools/processing-helper.js"></script>
+    <script src="http://d1n0x3qji82z53.cloudfront.net/src-min-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+    <script>
+        var editor = ace.edit("code");
+        editor.setTheme("ace/theme/monokai");
+        editor.getSession().setMode("ace/mode/java");
+
+        editor.commands.addCommand({
+          name: 'myCommand',
+          bindKey: {win: 'Ctrl-S',  mac: 'Command-S'},
+          exec: function(editor) {
+                //alert("guardado");
+          },
+          readOnly: true // false if this command should not apply in readOnly mode
+        });
+    </script>
+
+  </body>
+</html>
