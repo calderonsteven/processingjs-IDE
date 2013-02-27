@@ -83,13 +83,18 @@
     <div class="container-fluid">
       <div class="row-fluid">
         <div id="editor-container" class="span4">
-          <div id="code" onkeyup="runSketch();" >//ejemplo de codigo
-stroke(255, 102, 0);
-curve(5, 26, 5, 26, 73, 24, 73, 61);
-stroke(0); 
-curve(5, 26, 73, 24, 73, 61, 15, 65); 
-stroke(255, 102, 0);
-curve(73, 24, 73, 61, 15, 65, 15, 65);</div>
+          <div id="code">//ejemplo de codigo
+void setup(){
+    size(200, 200, P3D);    
+}
+
+void draw(){
+    noFill();
+    translate(100, 100, 0);
+    rotateX(-PI/6);
+    rotateY(PI/3);
+    box(50);
+}</div>
         <textarea rows="2" class="span12" id="output" readonly="readonly">Done.</textarea>
         </div>
         <div class="span8">
@@ -120,6 +125,29 @@ curve(73, 24, 73, 61, 15, 65, 15, 65);</div>
           },
           readOnly: true // false if this command should not apply in readOnly mode
         });
+
+        editor.getSession().on('change', function(e) {
+            runSketch_();
+            saveSketch();
+        });
+
+        runSketch();
+
+        var db;
+        function saveSketch(){
+          if(!db){
+            db = openDatabase('mysketchs', '1.0', 'sketchDb', 2 * 1024 * 1024);  
+            localStorage["hhh"] = db;
+          }else{
+            db = localStorage["hhh"];
+          }
+          
+          db.transaction(function (tx) {
+            tx.executeSql('CREATE TABLE IF NOT EXISTS sketches (id, text)');
+            tx.executeSql('DELETE FROM sketches WHERE id = 1');
+            tx.executeSql('INSERT INTO sketches (id, text) VALUES (1, "'+ editor.getValue() +'")');
+          });
+        }
     </script>
 
   </body>
