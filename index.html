@@ -109,7 +109,6 @@ void draw(){
     <script src="bootstrap/js/bootstrap.min.js"></script>
 
     <script src="processing.js"></script>
-    <script src="tools/jsbeautify.js"></script>
     <script src="tools/processing-helper.js"></script>
     <script src="http://d1n0x3qji82z53.cloudfront.net/src-min-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
     <script>
@@ -117,37 +116,11 @@ void draw(){
         editor.setTheme("ace/theme/monokai");
         editor.getSession().setMode("ace/mode/java");
 
-        editor.commands.addCommand({
-          name: 'myCommand',
-          bindKey: {win: 'Ctrl-S',  mac: 'Command-S'},
-          exec: function(editor) {
-                //alert("guardado");
-          },
-          readOnly: true // false if this command should not apply in readOnly mode
-        });
-
         editor.getSession().on('change', function(e) {
-            runSketch_();
-            saveSketch();
+            runSketch();
         });
 
         runSketch();
-
-        var db;
-        function saveSketch(){
-          if(!db){
-            db = openDatabase('mysketchs', '1.0', 'sketchDb', 2 * 1024 * 1024);  
-            localStorage["hhh"] = db;
-          }else{
-            db = localStorage["hhh"];
-          }
-          
-          db.transaction(function (tx) {
-            tx.executeSql('CREATE TABLE IF NOT EXISTS sketches (id, text)');
-            tx.executeSql('DELETE FROM sketches WHERE id = 1');
-            tx.executeSql('INSERT INTO sketches (id, text) VALUES (1, "'+ editor.getValue() +'")');
-          });
-        }
     </script>
 
   </body>

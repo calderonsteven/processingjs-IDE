@@ -1,7 +1,7 @@
 (function(global) {
 
   var canvas = document.getElementById('sketch'),
-    //code = document.getElementById('code'),
+    code = document.getElementById('code'),
     output = document.getElementById('output'),
     instance = null;
 
