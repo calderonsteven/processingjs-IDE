@@ -6,7 +6,7 @@ About
 --------
 * Developer          Steven Calderon
 * License:           MIT
-* Web Site:          http://dl.dropbox.com/u/1115409/public_dev/github/processingjs-IDE/code.html
+* Web Site:          http://calderonsteven.github.com/processingjs-IDE/
 
 
 Built with.
