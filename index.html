@@ -16,7 +16,7 @@
         border: 1px solid gray;
       }
       #editor-container{
-        height: 400px;
+        height: 600px;
       }
       #code {
         /*border: 1px solid blue;*/
@@ -42,6 +42,11 @@
                 <a href="#" onclick="runSketch();" >
                   <i class="icon-play-circle"></i>
                   Run
+                </a>
+              </li>
+              <li>
+                <a href="http://processingjs.org/reference/" target="_blank" >
+                  Refrence
                 </a>
               </li>
               <li class="dropdown">
@@ -97,10 +102,8 @@ void draw(){
 }</div>
         <textarea rows="2" class="span12" id="output" readonly="readonly">Done.</textarea>
         </div>
-        <div class="span8">
-          <div id="sketch-container">
+        <div id="sketch-container" class="span8">
             <canvas id="sketch"></canvas>
-          </div>
         </div>
       </div>
     </div>
@@ -111,17 +114,6 @@ void draw(){
     <script src="processing.js"></script>
     <script src="tools/processing-helper.js"></script>
     <script src="http://d1n0x3qji82z53.cloudfront.net/src-min-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
-    <script>
-        var editor = ace.edit("code");
-        editor.setTheme("ace/theme/monokai");
-        editor.getSession().setMode("ace/mode/java");
-
-        editor.getSession().on('change', function(e) {
-            runSketch();
-        });
-
-        runSketch();
-    </script>
-
+    <script src="js/ide.js"></script>
   </body>
 </html>
