@@ -44,6 +44,12 @@
                   Run
                 </a>
               </li>
+              <li class="active">
+                <a href="#" onclick="stopSketch()" >
+                  <i class="icon-stop"></i>
+                  Stop
+                </a>
+              </li>
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Examples <b class="caret"></b></a>
                 <ul class="dropdown-menu">
@@ -83,7 +89,7 @@
     <div class="container-fluid">
       <div class="row-fluid">
         <div id="editor-container" class="span4">
-          <div id="code">//ejemplo de codigo
+          <div id="code">//sample sketch
 void setup(){
     size(200, 200, P3D);    
 }
@@ -119,6 +125,23 @@ void draw(){
         editor.getSession().on('change', function(e) {
             runSketch();
         });
+
+        
+        function stopSketch(){
+          switchSketchState(false);
+        }
+        var processingInstance;
+        function switchSketchState(on) {
+            if (!processingInstance) {
+                processingInstance = Processing.getInstanceById('sketch');
+            }
+
+            if (on) {
+                processingInstance.loop();  // call Processing loop() function
+            } else {
+                processingInstance.noLoop(); // stop animation, call noLoop()
+            }
+        }
 
         runSketch();
     </script>
